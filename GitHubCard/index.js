@@ -6,7 +6,8 @@
 const cardsContainer = document.querySelector('.cards');
 
 //User get request
-axios.get('https://api.github.com/users/rodpa715')
+function axiosRequest(userName) {
+  axios.get(`https://api.github.com/users/${userName}`)
   .then(userYes => {
     // debugger
     const userObj = userYes.data;
@@ -16,26 +17,31 @@ axios.get('https://api.github.com/users/rodpa715')
   .catch(userNo => {
     debugger
   });
+}
 
-  //Followers get request
-  axios.get('https://api.github.com/users/rodpa715/following')
-  .then(followerYes => {
-    debugger
-    const followArray = followerYes.data;
-    const followersArray = followArray.map(followerObj => {
-      const followerCard = cardCreator(followerObj);
-      return followerCard
-    });
-    followersArray.forEach(follower => {
-      cardsContainer.appendChild(follower);
-    });
-    // console.log(followersArray[0]);
-    // const followerProfile = cardCreator(usObj);
-    // cardsContainer.appendChild(userProfile);
-  })
-  .catch(followerNo => {
-    debugger
-  });
+axiosRequest('rodpa715');
+
+//   //Followers get request
+//   axios.get('https://api.github.com/users/rodpa715/following')
+//   .then(followerYes => {
+//     debugger
+//     const followArray = followerYes.data;
+//     const followersArray = followArray.map(followerObj => {
+//       const followerCard = cardCreator(followerObj);
+//       return followerCard
+//     });
+//     followersArray.forEach(follower => {
+//       cardsContainer.appendChild(follower);
+//     });
+//     // console.log(followersArray[0]);
+//     // const followerProfile = cardCreator(usObj);
+//     // cardsContainer.appendChild(userProfile);
+//   })
+//   .catch(followerNo => {
+//     debugger
+//   });
+
+
 
 /* Step 2: Inspect and study the data coming back, this is YOUR 
    github info! You will need to understand the structure of this 
@@ -58,7 +64,7 @@ axios.get('https://api.github.com/users/rodpa715')
           user, and adding that card to the DOM.
 */
 
-const followersArray = [];
+// const followersArray = [];
 
 /* Step 3: Create a function that accepts a single object as its only argument,
           Using DOM methods and properties, create a component that will return the following DOM element:
