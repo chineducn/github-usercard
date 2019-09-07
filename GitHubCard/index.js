@@ -21,6 +21,7 @@ function axiosRequest(userName) {
 
 axiosRequest('rodpa715');
 
+//Followers get request
 axios.get(`https://api.github.com/users/rodpa715/followers`)
   .then(followerYes => {
     // debugger
@@ -33,27 +34,6 @@ axios.get(`https://api.github.com/users/rodpa715/followers`)
   .catch(followerNo => {
     debugger
   });
-
-//   //Followers get request
-//   axios.get('https://api.github.com/users/rodpa715/following')
-//   .then(followerYes => {
-//     debugger
-//     const followArray = followerYes.data;
-//     const followersArray = followArray.map(followerObj => {
-//       const followerCard = cardCreator(followerObj);
-//       return followerCard
-//     });
-//     followersArray.forEach(follower => {
-//       cardsContainer.appendChild(follower);
-//     });
-//     // console.log(followersArray[0]);
-//     // const followerProfile = cardCreator(usObj);
-//     // cardsContainer.appendChild(userProfile);
-//   })
-//   .catch(followerNo => {
-//     debugger
-//   });
-
 
 
 /* Step 2: Inspect and study the data coming back, this is YOUR 
