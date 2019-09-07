@@ -3,12 +3,15 @@
            https://api.github.com/users/<your name>
 */
 
+const cardsContainer = document.querySelector('.cards');
+
 axios.get('https://api.github.com/users/rodpa715')
   .then(userYes => {
     // debugger
     const userObj = userYes.data;
     const userProfile = cardCreator(userObj);
     console.log(userProfile);
+    cardsContainer.appendChild(userProfile);
   })
   .catch(userNo => {
     debugger
@@ -77,16 +80,16 @@ function cardCreator(userObj) {
   usernameItem.classList.add('username');
 
   //Adding values
-  // imageItem.src = userObj['avatar_url'];
-  // nameItem.textContent = userObj['name'];
-  // usernameItem.textContent = userObj['login'];
-  // locationItem.textContent = userObj['location'];
-  // profileItem.textContent = `Profile ${profileLink}`;
-  // profileLink.href = userObj['html_url'];
-  // profileLink.textContent = userObj['html_url'];
-  // followerCount.textContent = userObj['followers'];
-  // followingCount.textContent = userObj['following'];
-  // bioItem.textContent = userObj['bio'];
+  imageItem.src = userObj['avatar_url'];
+  nameItem.textContent = userObj['name'];
+  usernameItem.textContent = userObj['login'];
+  locationItem.textContent = `Location: ${userObj['location']}`;
+  profileItem.textContent = `Profile: ${profileLink}`;
+  profileLink.href = userObj['html_url'];
+  profileLink.textContent = userObj['html_url'];
+  followerCount.textContent = `Followers: ${userObj['followers']}`;
+  followingCount.textContent = `Following: ${userObj['following']}`;
+  bioItem.textContent = `Bio: ${userObj['bio']}`;
 
   //Append away
   profileItem.appendChild(profileLink);
@@ -103,7 +106,7 @@ function cardCreator(userObj) {
   return cardContainer;
 }
 
-console.log(cardCreator());
+// console.log(cardCreator());
 /* List of LS Instructors Github username's: 
   tetondan
   dustinmyers
