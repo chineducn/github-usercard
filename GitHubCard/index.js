@@ -6,7 +6,7 @@
 const cardsContainer = document.querySelector('.cards');
 
 //User get request
-function axiosRequest(userName) {
+function userDataRequest(userName) {
   axios.get(`https://api.github.com/users/${userName}`)
   .then(userYes => {
     // debugger
@@ -19,22 +19,25 @@ function axiosRequest(userName) {
   });
 }
 
-axiosRequest('rodpa715');
+userDataRequest('rodpa715');
 
 //Followers get request
-axios.get(`https://api.github.com/users/rodpa715/followers`)
+function followerRequest(userName) {
+  axios.get(`https://api.github.com/users/${userName}/followers`)
   .then(followerYes => {
     // debugger
     const followArray = followerYes.data;
     const followersArray = followArray.map(follower => {
-      const followerCard = axiosRequest(follower.login);
+      const followerCard = userDataRequest(follower.login);
       return followerCard;
     })  
   })
   .catch(followerNo => {
     debugger
   });
+}
 
+followerRequest('rodpa715');
 
 /* Step 2: Inspect and study the data coming back, this is YOUR 
    github info! You will need to understand the structure of this 
