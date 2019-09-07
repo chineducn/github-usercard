@@ -5,12 +5,24 @@
 
 const cardsContainer = document.querySelector('.cards');
 
+//User get request
 axios.get('https://api.github.com/users/rodpa715')
   .then(userYes => {
     // debugger
     const userObj = userYes.data;
     const userProfile = cardCreator(userObj);
-    console.log(userProfile);
+    cardsContainer.appendChild(userProfile);
+  })
+  .catch(userNo => {
+    debugger
+  });
+
+  //Followers get request
+  axios.get('https://api.github.com/users/rodpa715/followers')
+  .then(userYes => {
+    debugger
+    const userArray = userYes.data;
+    const userProfile = cardCreator(userObj);
     cardsContainer.appendChild(userProfile);
   })
   .catch(userNo => {
