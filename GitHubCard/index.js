@@ -53,8 +53,22 @@ const followersArray = [];
 </div>
 */
 
-function cardCreator() {
+function cardCreator(userObj) {
+  //Element creation
   const cardContainer = document.createElement('div');
+  const imageItem = document.createElement('img');
+  const infoContainer = document.createElement('div');
+  const nameItem = document.createElement('h3');
+  const usernameItem = document.createElement('p');
+  const locationItem = document.createElement('p');
+  const profileItem = document.createElement('p');
+  const profileLink = document.createElement('a');
+  const followerItem = document.createElement('p');
+  const followingItem = document.createElement('p');
+  const bioItem = document.createElement('p');
+
+  //Adding attribues
+  
 }
 
 /* List of LS Instructors Github username's: 
