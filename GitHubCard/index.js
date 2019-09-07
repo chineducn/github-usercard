@@ -18,14 +18,17 @@ axios.get('https://api.github.com/users/rodpa715')
   });
 
   //Followers get request
-  axios.get('https://api.github.com/users/rodpa715/followers')
+  axios.get('https://api.github.com/users/rodpa715/following')
   .then(followerYes => {
-    // debugger
+    debugger
     const followArray = followerYes.data;
     const followersArray = followArray.map(followerObj => {
       const followerCard = cardCreator(followerObj);
       return followerCard
-    })
+    });
+    followersArray.forEach(follower => {
+      cardsContainer.appendChild(follower);
+    });
     // console.log(followersArray[0]);
     // const followerProfile = cardCreator(usObj);
     // cardsContainer.appendChild(userProfile);
