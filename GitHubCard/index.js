@@ -21,6 +21,19 @@ function axiosRequest(userName) {
 
 axiosRequest('rodpa715');
 
+axios.get(`https://api.github.com/users/rodpa715/followers`)
+  .then(followerYes => {
+    // debugger
+    const followArray = followerYes.data;
+    const followersArray = followArray.map(follower => {
+      const followerCard = axiosRequest(follower.login);
+      return followerCard;
+    })  
+  })
+  .catch(followerNo => {
+    debugger
+  });
+
 //   //Followers get request
 //   axios.get('https://api.github.com/users/rodpa715/following')
 //   .then(followerYes => {
