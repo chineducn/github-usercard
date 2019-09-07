@@ -1,7 +1,43 @@
 /* Step 1: using axios, send a GET request to the following URL 
-           (replacing the palceholder with your Github name):
+           (replacing the placeholder with your Github name):
            https://api.github.com/users/<your name>
 */
+
+const cardsContainer = document.querySelector('.cards');
+
+//User get request
+function userDataRequest(userName) {
+  axios.get(`https://api.github.com/users/${userName}`)
+  .then(userYes => {
+    // debugger
+    const userObj = userYes.data;
+    const userProfile = cardCreator(userObj);
+    cardsContainer.appendChild(userProfile);
+  })
+  .catch(userNo => {
+    debugger
+  });
+}
+
+userDataRequest('rodpa715');
+
+//Followers get request
+function followerRequest(userName) {
+  axios.get(`https://api.github.com/users/${userName}/followers`)
+  .then(followerYes => {
+    // debugger
+    const followArray = followerYes.data;
+    const followersArray = followArray.map(follower => {
+      const followerCard = userDataRequest(follower.login);
+      return followerCard;
+    })  
+  })
+  .catch(followerNo => {
+    debugger
+  });
+}
+
+followerRequest('rodpa715');
 
 /* Step 2: Inspect and study the data coming back, this is YOUR 
    github info! You will need to understand the structure of this 
@@ -24,7 +60,7 @@
           user, and adding that card to the DOM.
 */
 
-const followersArray = [];
+// const followersArray = [];
 
 /* Step 3: Create a function that accepts a single object as its only argument,
           Using DOM methods and properties, create a component that will return the following DOM element:
@@ -43,9 +79,56 @@ const followersArray = [];
     <p>Bio: {users bio}</p>
   </div>
 </div>
-
 */
 
+function cardCreator(userObj) {
+  //Element creation
+  const cardContainer = document.createElement('div');
+  const imageItem = document.createElement('img');
+  const infoContainer = document.createElement('div');
+  const nameItem = document.createElement('h3');
+  const usernameItem = document.createElement('p');
+  const locationItem = document.createElement('p');
+  const profileItem = document.createElement('p');
+  const profileLink = document.createElement('a');
+  const followerCount = document.createElement('p');
+  const followingCount = document.createElement('p');
+  const bioItem = document.createElement('p');
+
+  //Adding attribues
+  cardContainer.classList.add('card');
+  infoContainer.classList.add('card-info');
+  nameItem.classList.add('name');
+  usernameItem.classList.add('username');
+
+  //Adding values
+  imageItem.src = userObj['avatar_url'];
+  nameItem.textContent = userObj['name'];
+  usernameItem.textContent = userObj['login'];
+  locationItem.textContent = `Location: ${userObj['location']}`;
+  profileItem.textContent = `Profile: ${profileLink}`;
+  profileLink.href = userObj['html_url'];
+  profileLink.textContent = userObj['html_url'];
+  followerCount.textContent = `Followers: ${userObj['followers']}`;
+  followingCount.textContent = `Following: ${userObj['following']}`;
+  bioItem.textContent = `Bio: ${userObj['bio']}`;
+
+  //Append away
+  profileItem.appendChild(profileLink);
+  infoContainer.appendChild(nameItem);
+  infoContainer.appendChild(usernameItem);
+  infoContainer.appendChild(locationItem);
+  infoContainer.appendChild(profileItem);
+  infoContainer.appendChild(followerCount);
+  infoContainer.appendChild(followingCount);
+  infoContainer.appendChild(bioItem);
+  cardContainer.appendChild(imageItem);
+  cardContainer.appendChild(infoContainer);
+
+  return cardContainer;
+}
+
+// console.log(cardCreator());
 /* List of LS Instructors Github username's: 
   tetondan
   dustinmyers
