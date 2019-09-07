@@ -51,8 +51,11 @@ const followersArray = [];
     <p>Bio: {users bio}</p>
   </div>
 </div>
-
 */
+
+function cardCreator() {
+  const cardContainer = document.createElement('div');
+}
 
 /* List of LS Instructors Github username's: 
   tetondan
