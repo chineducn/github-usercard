@@ -3,9 +3,12 @@
            https://api.github.com/users/<your name>
 */
 
-axios.get('https://api.github.com/users/chineducn')
+axios.get('https://api.github.com/users/rodpa715')
   .then(userYes => {
-    debugger
+    // debugger
+    const userObj = userYes.data;
+    const userProfile = cardCreator(userObj);
+    console.log(userProfile);
   })
   .catch(userNo => {
     debugger
@@ -63,14 +66,44 @@ function cardCreator(userObj) {
   const locationItem = document.createElement('p');
   const profileItem = document.createElement('p');
   const profileLink = document.createElement('a');
-  const followerItem = document.createElement('p');
-  const followingItem = document.createElement('p');
+  const followerCount = document.createElement('p');
+  const followingCount = document.createElement('p');
   const bioItem = document.createElement('p');
 
   //Adding attribues
-  
+  cardContainer.classList.add('card');
+  infoContainer.classList.add('card-info');
+  nameItem.classList.add('name');
+  usernameItem.classList.add('username');
+
+  //Adding values
+  // imageItem.src = userObj['avatar_url'];
+  // nameItem.textContent = userObj['name'];
+  // usernameItem.textContent = userObj['login'];
+  // locationItem.textContent = userObj['location'];
+  // profileItem.textContent = `Profile ${profileLink}`;
+  // profileLink.href = userObj['html_url'];
+  // profileLink.textContent = userObj['html_url'];
+  // followerCount.textContent = userObj['followers'];
+  // followingCount.textContent = userObj['following'];
+  // bioItem.textContent = userObj['bio'];
+
+  //Append away
+  profileItem.appendChild(profileLink);
+  infoContainer.appendChild(nameItem);
+  infoContainer.appendChild(usernameItem);
+  infoContainer.appendChild(locationItem);
+  infoContainer.appendChild(profileItem);
+  infoContainer.appendChild(followerCount);
+  infoContainer.appendChild(followingCount);
+  infoContainer.appendChild(bioItem);
+  cardContainer.appendChild(imageItem);
+  cardContainer.appendChild(infoContainer);
+
+  return cardContainer;
 }
 
+console.log(cardCreator());
 /* List of LS Instructors Github username's: 
   tetondan
   dustinmyers
