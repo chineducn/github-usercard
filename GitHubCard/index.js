@@ -3,7 +3,7 @@
            https://api.github.com/users/<your name>
 */
 
-axios.get('https://api.github.com/users/chinedcnn')
+axios.get('https://api.github.com/users/chineducn')
   .then(userYes => {
     debugger
   })
