@@ -19,13 +19,18 @@ axios.get('https://api.github.com/users/rodpa715')
 
   //Followers get request
   axios.get('https://api.github.com/users/rodpa715/followers')
-  .then(userYes => {
-    debugger
-    const userArray = userYes.data;
-    const userProfile = cardCreator(userObj);
-    cardsContainer.appendChild(userProfile);
+  .then(followerYes => {
+    // debugger
+    const followArray = followerYes.data;
+    const followersArray = followArray.map(followerObj => {
+      const followerCard = cardCreator(followerObj);
+      return followerCard
+    })
+    // console.log(followersArray[0]);
+    // const followerProfile = cardCreator(usObj);
+    // cardsContainer.appendChild(userProfile);
   })
-  .catch(userNo => {
+  .catch(followerNo => {
     debugger
   });
 
